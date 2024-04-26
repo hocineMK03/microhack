@@ -1,0 +1,57 @@
+[{
+  "_id": {
+    "$oid": "662b6da6fbe5e38521b4df7d"
+  },
+  "planName": "Free",
+  "planDescription": "Basic plan with limited features",
+  "planPrice": 0,
+  "planFeatures": [
+    "Limited access to features",
+    "Basic support"
+  ],
+  "planUserNumbers": 5,
+  "planTasksNumbers": 10,
+  "planProjectsNumbers": 3,
+  "dateCreated": {
+    "$date": "2024-04-26T09:02:30.408Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662b6e671ae6de813b267060"
+  },
+  "planName": "Premium",
+  "planDescription": "Comprehensive plan with advanced features",
+  "planPrice": 29.99,
+  "planFeatures": [
+    "Full access to all features",
+    "Priority support"
+  ],
+  "planUserNumbers": 50,
+  "planTasksNumbers": 500,
+  "planProjectsNumbers": 15,
+  "dateCreated": {
+    "$date": "2024-04-26T09:05:43.313Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662b6eb71ae6de813b267062"
+  },
+  "planName": "Extra",
+  "planDescription": "Premium plan with additional benefits",
+  "planPrice": 49.99,
+  "planFeatures": [
+    "All features included in the Premium plan",
+    "Additional premium features"
+  ],
+  "planUserNumbers": 200,
+  "planTasksNumbers": 1000,
+  "planProjectsNumbers": 30,
+  "dateCreated": {
+    "$date": "2024-04-26T09:07:03.619Z"
+  },
+  "__v": 0
+}]

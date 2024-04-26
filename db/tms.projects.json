@@ -1,0 +1,116 @@
+[{
+  "_id": {
+    "$oid": "662bc4ddb184d119c9cdaa32"
+  },
+  "projectName": "t",
+  "projectDescription": "esc",
+  "projectManager": {
+    "$oid": "662bc4cab184d119c9cdaa2b"
+  },
+  "tasksObjects": [
+    {
+      "$oid": "662bc4cab184d119c9cdaa2b"
+    }
+  ],
+  "currentTaskNumbers": 0,
+  "dateCreated": {
+    "$date": "2024-04-26T15:14:37.650Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "662bd1db46158edfcf3f2f5d"
+  },
+  "projectName": "a",
+  "projectDescription": "esc",
+  "projectManager": {
+    "$oid": "662bc4cab184d119c9cdaa2b"
+  },
+  "tasksObjects": [],
+  "currentTaskNumbers": 0,
+  "dateCreated": {
+    "$date": "2024-04-26T16:10:03.142Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662bd1e446158edfcf3f2f62"
+  },
+  "projectName": "aa",
+  "projectDescription": "esc",
+  "projectManager": {
+    "$oid": "662bc4cab184d119c9cdaa2b"
+  },
+  "tasksObjects": [],
+  "currentTaskNumbers": 0,
+  "dateCreated": {
+    "$date": "2024-04-26T16:10:12.570Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662bd1ed46158edfcf3f2f67"
+  },
+  "projectName": "test",
+  "projectDescription": "esc",
+  "projectManager": {
+    "$oid": "662bc4cab184d119c9cdaa2b"
+  },
+  "tasksObjects": [],
+  "currentTaskNumbers": 0,
+  "dateCreated": {
+    "$date": "2024-04-26T16:10:21.230Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662bd1f546158edfcf3f2f6c"
+  },
+  "projectName": "test1",
+  "projectDescription": "esc",
+  "projectManager": {
+    "$oid": "662bc4cab184d119c9cdaa2b"
+  },
+  "tasksObjects": [],
+  "currentTaskNumbers": 0,
+  "dateCreated": {
+    "$date": "2024-04-26T16:10:29.046Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662bd1fd46158edfcf3f2f71"
+  },
+  "projectName": "test2",
+  "projectDescription": "esc",
+  "projectManager": {
+    "$oid": "662bc4cab184d119c9cdaa2b"
+  },
+  "tasksObjects": [],
+  "currentTaskNumbers": 0,
+  "dateCreated": {
+    "$date": "2024-04-26T16:10:37.149Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662bd20546158edfcf3f2f76"
+  },
+  "projectName": "test3",
+  "projectDescription": "esc",
+  "projectManager": {
+    "$oid": "662bc4cab184d119c9cdaa2b"
+  },
+  "tasksObjects": [],
+  "currentTaskNumbers": 0,
+  "dateCreated": {
+    "$date": "2024-04-26T16:10:45.789Z"
+  },
+  "__v": 0
+}]

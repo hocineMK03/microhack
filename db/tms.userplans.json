@@ -1,0 +1,17 @@
+[{
+  "_id": {
+    "$oid": "662bc4cab184d119c9cdaa2f"
+  },
+  "user": {
+    "$oid": "662bc4cab184d119c9cdaa2b"
+  },
+  "plan": {
+    "$oid": "662b6da6fbe5e38521b4df7d"
+  },
+  "currentProjectNumbers": 7,
+  "currentUserNumbers": 0,
+  "datePayed": {
+    "$date": "2024-04-26T15:14:18.904Z"
+  },
+  "__v": 0
+}]

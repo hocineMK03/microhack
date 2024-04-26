@@ -1,0 +1,21 @@
+[{
+  "_id": {
+    "$oid": "662bcac1c561537bacfc00a6"
+  },
+  "taskName": "Task 1",
+  "taskDescription": "Description of Task 1",
+  "taskParentProject": {
+    "$oid": "662bc4ddb184d119c9cdaa32"
+  },
+  "taskNeededworkers": 3,
+  "tasktags": [
+    "tag1",
+    "tag2"
+  ],
+  "taskpriority": "high",
+  "taskStatus": "pending",
+  "dateCreated": {
+    "$date": "2024-04-26T15:39:45.735Z"
+  },
+  "__v": 0
+}]

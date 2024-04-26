@@ -1,0 +1,45 @@
+[{
+  "_id": {
+    "$oid": "662b0db808847b4c34d515e2"
+  },
+  "username": "hocine",
+  "email": "hocine@gmail.com",
+  "phoneNumber": 550,
+  "password": "$2b$04$6gxqm0z7hKGzBajyrO/p7uEWiAl2AIQEeMZtsVOHsosjvMl/2JYn2",
+  "role": "project manager",
+  "createdBy": null,
+  "dateCreated": {
+    "$date": "2024-04-26T02:13:12.750Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662b85acb970e8138d0afc9b"
+  },
+  "username": "tt",
+  "email": "ytt@gmail.com",
+  "phoneNumber": 55555,
+  "password": "$2b$04$gEzUwrNSQNXYRSzxJnaEYu2/65gFwgPNFXLQo4NuGkaF0jINTF/v6",
+  "role": "project manager",
+  "createdBy": null,
+  "dateCreated": {
+    "$date": "2024-04-26T10:45:00.228Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662bc4cab184d119c9cdaa2b"
+  },
+  "username": "human",
+  "email": "human@gmail.com",
+  "phoneNumber": 6666,
+  "password": "$2b$04$YTbg2Xfc/cX9zu9HWLnkleYfUydxKRnc2KL8MvRkqIBwnA1hgiIhS",
+  "role": "project manager",
+  "createdBy": null,
+  "dateCreated": {
+    "$date": "2024-04-26T15:14:18.822Z"
+  },
+  "__v": 0
+}]
