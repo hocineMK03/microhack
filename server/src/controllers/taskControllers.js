@@ -7,11 +7,11 @@ class TaskControllers{
 
 
     async handleCreateTask(req,res,next){
-        const{taskName,taskDescription,taskNeededworkers,tasktags,taskpriority,taskStatus,projectName}=req.body
+        const{taskName,taskDescription,taskNeededworkers,tasktags,taskpriority,taskStatus,projectName,longtitude,laltitude}=req.body
         try{
             const getparentobject=await projectservices.getProjectID(projectName)
             
-            const result=await services.handleCreateTask(taskName,taskDescription,taskNeededworkers,req.user.user,tasktags,taskpriority,taskStatus,getparentobject)
+            const result=await services.handleCreateTask(taskName,taskDescription,taskNeededworkers,req.user.user,tasktags,taskpriority,taskStatus,getparentobject,longtitude,laltitude)
             if(result){
                 
                 let user_id=await userservices.checkUser(req.user.user)
@@ -33,8 +33,8 @@ class TaskControllers{
         const {projectName,taskpriority,taskStatus}=req.body
 
         try{
-
-            const result=await services.handleDisplayTasks(req.user.user,taskpriority,taskStatus,projectName)
+            const projectid=await projectservices.getProjectID(projectName)
+            const result=await services.handleDisplayTasks(req.user.user,taskpriority,taskStatus,projectid)
             if(result){
 
                 return res.status(200).json(result)
@@ -125,15 +125,33 @@ class TaskControllers{
     async handleAutoAssignTask(req,res,next){
         const{workersSize,userCoorDict,taskLatitude,taskLongitude,taskName}=req.body
         try{
-            const task_ui=await services.handleGetID(taskName)
-            const doauto=await services.handleAutoAssign(workersSize,userCoorDict,taskLatitude,taskLongitude,task_ui)
-            if(doauto){
-                return res.stats(200).json(doauto)
+            
+            const task_id=await services.handleGetID(taskName)
+            
+            const getWorkers=await userservices.handleGetWorkers(task_id.taskParentProject,req.user.user)
+            const getCoord=await services.getCoodinates(task_id)
+            const userCoorDict = {};
+            for (const workerId in getWorkers) {
+                
+                    const worker = getWorkers[workerId];
+                    userCoorDict[worker._id] = {
+                        latitude: worker.taskLatitude,
+                        longitude: worker.taskLongitude
+                    };
+                
             }
-            const err=new Error('couldn/t handle the dataset')
-            err.status=400
-              err.status='fail'
-              next(err)
+            let laltitude=getCoord.taskLatitude
+            let longitude=getCoord.taskLongitude
+            console.log(userCoorDict)
+            const doauto=await services.handleAutoAssign(workersSize,userCoorDict,laltitude,longitude,task_id)
+            // if(doauto){
+            //     return res.stats(200).json("doauto")
+            // }
+            // const err=new Error('couldn/t handle the dataset')
+            // err.status=400
+            //   err.status='fail'
+            //   next(err)
+            return res.status(200).json(doauto)
         }
         catch(error){
             next(error)

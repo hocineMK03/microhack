@@ -83,6 +83,31 @@ class ProjectController {
 
     }
 
+    async handleGetProjectByID(req,res,next){
+
+        const {projectID}=req.query
+        if(!projectID){
+            const err=new Error('no')
+            err.status=400
+              err.status='fail'
+              next(err)
+        }
+        try{
+            const result=await services.handleGetProjectByID(projectID)
+            if(result){
+                return res.status(200).json(result)
+            }
+            const err=new Error('yes')
+            err.status=400
+              err.status='fail'
+              next(err)
+        }
+        catch(err){
+            next(err)
+        }
+
+    }
+
 
 }
 module.exports = new ProjectController;

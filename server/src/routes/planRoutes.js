@@ -12,6 +12,8 @@ const router = express.Router();
  *         description: Successful adding
  *       400:
  *         description: bad request
+ *       500:
+ *          internal error
  */
 router.post('/createplan',planControllers.handleCreatePlan)
 

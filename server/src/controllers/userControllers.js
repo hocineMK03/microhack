@@ -90,11 +90,11 @@ class UserControllers{
     }
 
     async handleCreateUser(req,res,next){
-        const{projectName,username,email,phoneNumber,password,role,tag}=req.body
+        const{projectName,username,email,phoneNumber,password,role,tag,longtitude,laltitude}=req.body
 
         if(username!=undefined && email!=undefined  && phoneNumber != undefined && password!=undefined){
             try{
-                const result=await services.handleCreateUser(username,email,phoneNumber,password,role,req.user.user)
+                const result=await services.handleCreateUser(username,email,phoneNumber,password,role,req.user.user,longtitude,laltitude)
                 console.log(result)
                 if(result){
                     // ! add user to project

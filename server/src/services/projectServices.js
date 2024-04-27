@@ -137,5 +137,22 @@ class ProjectServices{
 
       }
     }
+
+
+    async handleGetProjectByID(project_id){
+
+      try{
+        const result=await project.findOne({_id:project_id})
+        if(result){
+          return result
+        }
+        return null
+      }
+      catch(err){
+        throw new Error('An error occured')
+      }
+
+
+    }
 }
 module.exports=new ProjectServices

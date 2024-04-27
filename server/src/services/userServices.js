@@ -95,8 +95,9 @@ class AuthServices{
         }
 
     }
-    async handleCreateUser(username, email, phoneNumber, password,role,creator){
-        
+    async handleCreateUser(username, email, phoneNumber, password,role,creator,longitude,laltitude){
+        let long=longitude || 0
+        let lalt=laltitude || 0
         const creator_info=await this.checkUser(creator)
         console.log(creator_info)
         if(creator_info && creator_info.role==='project manager'){
@@ -114,7 +115,9 @@ class AuthServices{
                     phoneNumber:phoneNumber,
                     password:password,
                     createdBy:creator_id,
-                    role:role1
+                    role:role1,
+                    taskLatitude:lalt,
+                    taskLongitude:long
                 })
                 
                 if(newUser){
@@ -214,6 +217,21 @@ class AuthServices{
         }
     }
     
+    async handleGetWorkers(projectName,user){
+        try{
+            const projectManagerInfo=await this.checkUser(user)
+            if(projectManagerInfo && (projectManagerInfo.role==='project manager' || projectManagerInfo.role==='task manager')){
+                const projectManager_id=projectManagerInfo._id
+                const result=await users.find({createdBy:projectManager_id})
+                if(result){
+                    return result
+                }
+            }
+        }
+        catch(error){
+            throw new Error('An error occured')
+        }
+    }
 }
 
 module.exports=new AuthServices

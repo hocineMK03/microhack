@@ -48,11 +48,40 @@ const jwtVerify=require('../middleware/verifyjwt')
 /**
  * @swagger
  * /createprojects:
- *   get:
+ *   post:
  *     summary: create projects
+ *    requestBody:
+ *      required: true
+ *     content:
+ *      application/json:
+ *      schema:
+ *      type: object
+ *     properties:
+ *     projectName:
+ *     type: string
+ *    example: "project 1"
+ *   projectDescription:
+ *   type: string
+ *  example: "project description"
+ * projectpriority:
+ * type: string
+ * example: "low"
+ * projectStatus:
+ * type: string
+ *  example: "pending"
+ * 
  *     responses:
  *       200:
  *         description: Successful operation. Returns a an object rerpresentation of a projects.
+ * content:
+ * application/json:
+ * schema:
+ * type: object
+ * properties:
+ *message:
+    * type: string
+    * example: "project created successfully"
+ * 
  *       401:
  *         description: Unauthorized. Authentication required.
  *       500:
@@ -62,7 +91,7 @@ const jwtVerify=require('../middleware/verifyjwt')
 /**
  * @swagger
  * /deleteproject:
- *   get:
+ *   post:
  *     summary: delete a project
  *     responses:
  *       200:
@@ -76,7 +105,7 @@ const jwtVerify=require('../middleware/verifyjwt')
 /**
  * @swagger
  * /updateproject:
- *   get:
+ *   post:
  *     summary: update a project
  *     responses:
  *       200:
@@ -86,6 +115,7 @@ const jwtVerify=require('../middleware/verifyjwt')
  *       500:
  *         description: Internal server error.
  */
+router.get('/getprojectbyid',projectControllers.handleGetProjectByID)
 router.get('/displayprojects',projectControllers.handleDisplayProjects)
 router.use(jwtVerify)
 router.post('/createproject',projectControllers.handleCreateProject)

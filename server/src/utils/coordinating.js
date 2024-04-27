@@ -34,6 +34,9 @@ class Coordinating {
                     workersSize--; // Decrement workersSize when a worker is found within the search radius
                 }
             }
+            // if(distance>searchRadius*4){
+            //     searchRadius+=200
+            // }
             searchRadius += 100.3; // Increase the search radius
         }
 

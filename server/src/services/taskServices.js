@@ -3,8 +3,10 @@ const usertasks=require('../models/usertasks')
 const coordinations=require('../utils/coordinating')
 class TaskServices{
 
-    async  handleCreateTask(taskName, taskDescription,taskNeededworkers, creator, tasktags, taskpriority, taskStatus, project_id) {
+    async  handleCreateTask(taskName, taskDescription,taskNeededworkers, creator, tasktags, taskpriority, taskStatus, project_id,longtitude,laltitude) {
         try {
+            let long=longtitude || 0.0
+            let lalt=laltitude || 0.0
             const tasktagsArray=Array.isArray(tasktags) ? tasktags : [tasktags];
             const task = await tasks.create({
                 taskName,
@@ -13,7 +15,9 @@ class TaskServices{
                 tasktags: tasktagsArray,
                 taskpriority,
                 taskStatus,
-                taskNeededworkers
+                taskNeededworkers,
+                taskLatitude:lalt,
+                taskLongitude:long
             });
             if (task) {
                 return task;
@@ -33,18 +37,19 @@ class TaskServices{
 
         let query={}
         if(projectName){
-            query.projectName=projectName
+            query.taskParentProject=projectName
         }
         if(priority){
             query.taskpriority=priority
         }
         if(progress){
-            query.progress=progress
+            query.taskStatus=progress
         }
-
+        
         try{
             const result=await tasks.find(query)
             if(result){
+                console.log(result)
                 return result
             }
             return null
@@ -131,17 +136,23 @@ class TaskServices{
 async  handleAutoAssign(workersSize, userCoorDict, taskLatitude, taskLongitude, task_id) {
     try {
         const nearestWorkers = coordinations.getTheNearestWorkers(workersSize, userCoorDict, taskLatitude, taskLongitude);
-
+        console.log(nearestWorkers)
         // Create an array of promises for each task creation
         const createTaskPromises = nearestWorkers.map(async (worker) => {
+            const seeifassigned=await usertasks.findOne({taskworker:worker.id,taski:task_id})
+            if(seeifassigned){
+                return
+            }
+            
             return usertasks.create({
                 taskworker: worker.id,
                 taski: task_id
             });
         });
-
+        
         // Wait for all task creations to complete
         await Promise.all(createTaskPromises);
+        return nearestWorkers
     } catch (error) {
         console.error(error);
         throw error;
@@ -149,7 +160,21 @@ async  handleAutoAssign(workersSize, userCoorDict, taskLatitude, taskLongitude, 
 }
 
 
+async getCoodinates(task_id){
 
+    try{
+        const gettask=await tasks.findOne({_id:task_id})
+        if(gettask){
+            const { taskLongitude, taskLatitude } = gettask;
+            return { taskLongitude, taskLatitude };
+        }
+        return null
+    }
+    catch(err){
+        throw new Error('An error occured')
+    }
+
+}
 
 }
 module.exports= new TaskServices

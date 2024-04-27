@@ -37,7 +37,7 @@ const taskSchema = new Schema({
     },
     taskStatus: {
         type: String,
-        enum: ['pending', 'completed'],
+        enum: ['pending','on progress', 'completed'],
         default: 'pending'
     },
     taskLatitude: {
@@ -48,7 +48,10 @@ const taskSchema = new Schema({
         type: Number,
         default:0
     },
-
+    deadline:{
+        type:Date,
+        default:Date.now
+    },
     dateCreated: {
         type: Date,
         default: Date.now

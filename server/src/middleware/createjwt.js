@@ -13,7 +13,7 @@ class CreateJWT{
     createAccessToken=(user)=>{
        
         console.log("here",user)
-        const token=jwt.sign({user},process.env.ACCESS_JWT_SECRET,{expiresIn:'5h'});
+        const token=jwt.sign({user},process.env.ACCESS_JWT_SECRET,{expiresIn:'2d'});
         return token;
     }
 }

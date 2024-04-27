@@ -6,9 +6,9 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Your API Documentation',
+      title: 'YZ@ API Documentation',
       version: '1.0.0',
-      description: 'API documentation for your Express.js application',
+      description: 'API documentation for our Express.js application',
     },
   },
   apis: [path.resolve(__dirname, '../routes/*.js')], // Path to the route files

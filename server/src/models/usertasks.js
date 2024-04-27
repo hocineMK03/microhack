@@ -16,3 +16,5 @@ const usertasksShema=new Schema({
     }
 
 })
+
+module.exports=mongoose.model('Usertask',usertasksShema)
