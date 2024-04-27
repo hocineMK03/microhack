@@ -6,12 +6,12 @@ class ProjectController {
   
 
     async handleCreateProject(req,res,next){
-        const {projectName,projectDescription}=req.body
+        const {projectName,projectDescription,projectpriority,projectStatus}=req.body
         // ! tasknumbes to get from payed plan
         if(projectName!=undefined && projectDescription!=undefined){
             try{
                 const user_id=await userservicess.handlegetuserid(req.user.user)
-                const result=await services.handleCreateProject(projectName,projectDescription,user_id)
+                const result=await services.handleCreateProject(projectName,projectDescription,user_id,projectpriority,projectStatus)
                 
                 const userplan1=await userplans.handleIncrementProjectNumbers(user_id)
                 if(result){

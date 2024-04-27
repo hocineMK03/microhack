@@ -121,5 +121,23 @@ class TaskControllers{
             next(err)
         }
     }
+
+    async handleAutoAssignTask(req,res,next){
+        const{workersSize,userCoorDict,taskLatitude,taskLongitude,taskName}=req.body
+        try{
+            const task_ui=await services.handleGetID(taskName)
+            const doauto=await services.handleAutoAssign(workersSize,userCoorDict,taskLatitude,taskLongitude,task_ui)
+            if(doauto){
+                return res.stats(200).json(doauto)
+            }
+            const err=new Error('couldn/t handle the dataset')
+            err.status=400
+              err.status='fail'
+              next(err)
+        }
+        catch(error){
+            next(error)
+        }
+    }
 }
 module.exports=new TaskControllers

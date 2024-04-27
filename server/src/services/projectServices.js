@@ -51,15 +51,9 @@ class ProjectServices{
               projectName:projectName,
               projectManager:user_id
             })
-            // console.log(findProject)
-            // if (findProject) {
-            //   if (!findProject.projectUsers) {
-            //       findProject.projectUsers = []; // Initialize projectUsers as an empty array
-            //   }
-            //   findProject.projectUsers.push(worker_id); // Append worker_id to projectUsers array
-            //   console.log(findProject.projectUsers);
-            //   console.log(findProject)
-            //   await findProject.save();
+            console.log("here",findProject)
+            
+
             const proj=await userproject.create({projectUsers:worker_id,project:findProject._id,usertag:tag})
             if(proj){
             return true;
@@ -76,12 +70,12 @@ class ProjectServices{
     }
 
 
-    async handleCreateProject(projectName,projectDescription,creator){
+    async handleCreateProject(projectName,projectDescription,creator,projectpriority,projectStatus){
 
        
     
        try{
-        const proj=await project.create({projectName,projectDescription,projectManager:creator})
+        const proj=await project.create({projectName,projectDescription,projectManager:creator,projectpriority,projectStatus})
         if(proj){
             
             return proj
@@ -125,7 +119,7 @@ class ProjectServices{
     // }
     async displayProjects(){
       try{
-        const result=await project.find({}, { _id: 1, projectName: 1, projectDescription: 1, tasksObjects: 1 })
+        const result=await project.find({}, { _id: 1, projectName: 1, projectDescription: 1,projectpriority:1,projectStatus:1, tasksObjects: 1 })
         if(result){return result}
         return null
       }

@@ -26,7 +26,16 @@ const projectSchema = new Schema({
     }],
     
     
-    
+    projectpriority: {
+        type: String,
+        enum: ['low', 'medium', 'high'],
+        default: 'low'
+    },
+    projectStatus: {
+        type: String,
+        enum: ['pending', 'completed'],
+        default: 'pending'
+    },
     dateCreated: {
         type: Date,
         default: Date.now

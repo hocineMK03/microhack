@@ -2,7 +2,7 @@ const express=require('express')
 const bodyparser=require('body-parser')
 const cors = require('cors');
 const app=express()
-
+const { specs, swaggerUi } = require('./middleware/swaggerConf');
 const userRoutes=require('./routes/userRoutes')
 const projectRoutes=require('./routes/projectRoutes')
 const planRoutes=require('./routes/planRoutes')
@@ -13,6 +13,8 @@ const corsOptions = {
     credentials: true,
     exposedHeaders: 'Set-Cookie',
   };
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+
 app.use(cors(corsOptions));
 app.use(bodyparser.json())
 app.use('/api/auth',userRoutes)

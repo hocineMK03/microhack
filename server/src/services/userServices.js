@@ -1,7 +1,7 @@
 
 const users=require('../models/users')
 const authutils=require('../utils/authutil')
-
+const mongoose = require('mongoose');
 class AuthServices{
 
 
@@ -132,33 +132,35 @@ class AuthServices{
             console.log("herhhhe")
         }
     }
+    
 
-    async displayUsers(username,role,creator){
-        let query = {};
-        query.createdBy=creator
-        if (username) {
-            query.username = { $regex: `^${username}`, $options: 'i' };
-        }
-        const st=['worker','task manager', 'project manager']
-            let role1=null
-            if(!st.includes(role)){
-                role1=null
+    async  displayUsers(username, role, creator) {
+        try {
+            let query = {};
+            
+            if (creator!=undefined && mongoose.Types.ObjectId.isValid(creator)) {
+                query.createdBy = creator;
             }
-            role1=role
-        if (role1) {
-            query.role = role1; // Assuming role is a direct match
-        }
-        try{
-            const result=await users.find(query)
-            if(result){
-                return result
+    
+            if (username) {
+                query.username = { $regex: `^${username}`, $options: 'i' };
             }
-            return null
-        }
-        catch(error){
-            throw new Error('couldn\'t find users')
+    
+            const validRoles = ['worker', 'task manager', 'project manager'];
+    
+            if (role && validRoles.includes(role)) {
+                query.role = role;
+            }
+    
+            const result = await users.find(query);
+    
+            return result;
+        } catch (error) {
+            console.error(error);
+            throw new Error("Couldn't find users");
         }
     }
+    
 
     async updateUserRole(email,role){
         if(!authutils.validatemail(email)){

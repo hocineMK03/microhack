@@ -40,6 +40,15 @@ const taskSchema = new Schema({
         enum: ['pending', 'completed'],
         default: 'pending'
     },
+    taskLatitude: {
+        type: Number,
+        default:0
+    },
+    taskLongitude: {
+        type: Number,
+        default:0
+    },
+
     dateCreated: {
         type: Date,
         default: Date.now

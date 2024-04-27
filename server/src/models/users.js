@@ -31,6 +31,14 @@ const userSchema = new Schema({
                 enum: ['worker','task manager', 'project manager'],
                 default: 'worker'
             },
+            taskLatitude: {
+                type: Number,
+                default:0
+            },
+            taskLongitude: {
+                type: Number,
+                default:0
+            },
             createdBy: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'User' ,

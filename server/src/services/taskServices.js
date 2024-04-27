@@ -1,6 +1,6 @@
 const tasks=require('../models/tasks')
 const usertasks=require('../models/usertasks')
-
+const coordinations=require('../utils/coordinating')
 class TaskServices{
 
     async  handleCreateTask(taskName, taskDescription,taskNeededworkers, creator, tasktags, taskpriority, taskStatus, project_id) {
@@ -126,6 +126,29 @@ class TaskServices{
             throw err;
         }
     }
+    
+
+async  handleAutoAssign(workersSize, userCoorDict, taskLatitude, taskLongitude, task_id) {
+    try {
+        const nearestWorkers = coordinations.getTheNearestWorkers(workersSize, userCoorDict, taskLatitude, taskLongitude);
+
+        // Create an array of promises for each task creation
+        const createTaskPromises = nearestWorkers.map(async (worker) => {
+            return usertasks.create({
+                taskworker: worker.id,
+                taski: task_id
+            });
+        });
+
+        // Wait for all task creations to complete
+        await Promise.all(createTaskPromises);
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+
 
 
 }
